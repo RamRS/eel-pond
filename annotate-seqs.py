@@ -16,6 +16,8 @@ def main():
     parser.add_argument('transcripts')
     parser.add_argument('ortho')
     parser.add_argument('homol')
+    parser.add_argument('namedb')
+    parser.add_argument('dbFa')
     parser.add_argument('-z', '--no-ncbi', action='store_false',
                         dest='ncbi', default='True')
     args = parser.parse_args()
@@ -37,7 +39,7 @@ def main():
 
         o = ortho.get(name)
         if o:
-            annot = namedb.mouse_names.get(transform_name(o, args.ncbi))
+            annot = namedb.data_names.get(transform_name(o, args.ncbi))
             tr_dict[tr] = ('ortho', annot)
         else:
             if tr in tr_dict and tr_dict[tr][0] == 'ortho':
@@ -52,7 +54,7 @@ def main():
 
                 h, score = h[0]
                 score = round(float(score) / float(len(record.sequence)) * 100)
-                annot = namedb.mouse_names[transform_name(h, args.ncbi)]
+                annot = namedb.data_names[transform_name(h, args.ncbi)]
 
                 if score > oldscore:
                     tr_dict[tr] = (oldscore, annot)
@@ -76,7 +78,7 @@ def main():
 
         o = ortho.get(name)
         if o:
-            annot = namedb.mouse_names.get(transform_name(o, args.ncbi))
+            annot = namedb.data_names.get(transform_name(o, args.ncbi))
             annot = "ortho:" + annot
             annot_ortho_count += 1
         else:
@@ -85,7 +87,7 @@ def main():
             if h:
                 h, score = h[0]
                 score = round(float(score) / float(len(record.sequence)) * 100)
-                annot = namedb.mouse_names[transform_name(h, args.ncbi)]
+                annot = namedb.data_names[transform_name(h, args.ncbi)]
                 annot = "h=%d%% => " % score + annot
                 annot += " "
                 annot_homol_count += 1

@@ -1,6 +1,7 @@
 import cPickle
 import screed
 
-mouse_names = cPickle.load(open('mouse.namedb'))
-mouse_fullname = cPickle.load(open('mouse.namedb.fullname'))
-mouse_seqs = screed.ScreedDB('mouse.protein.faa')
+data_names = cPickle.load(open(sys.argv[4]))
+fullname = "%s.fullname" % sys.argv[4]
+data_fullname = cPickle.load(open(fullname))
+data_seqs = screed.ScreedDB(sys.argv[5])
