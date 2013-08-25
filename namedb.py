@@ -1,7 +1,8 @@
 import cPickle
 import screed
 
-data_names = cPickle.load(open(sys.argv[4]))
-fullname = "%s.fullname" % sys.argv[4]
-data_fullname = cPickle.load(open(fullname))
-data_seqs = screed.ScreedDB(sys.argv[5])
+data = cPickle.load('names.db')
+
+data_names = data.get('names',[])
+data_fullname = cPickle.load(open('fullnames.db'))
+data_seqs = screed.ScreedDB(data.get('seqs'),[])

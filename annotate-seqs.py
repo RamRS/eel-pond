@@ -16,8 +16,6 @@ def main():
     parser.add_argument('transcripts')
     parser.add_argument('ortho')
     parser.add_argument('homol')
-    parser.add_argument('namedb')
-    parser.add_argument('dbFa')
     parser.add_argument('-z', '--no-ncbi', action='store_false',
                         dest='ncbi', default='True')
     args = parser.parse_args()

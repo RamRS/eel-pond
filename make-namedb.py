@@ -4,7 +4,8 @@ from cPickle import dump
 import screed
 import sys
 
-outfile = sys.argv[2]
+# the name-db
+outfile = "names.db"
 
 d = {}
 e = {}
@@ -17,7 +18,7 @@ for record in screed.open(sys.argv[1]):
     e[ident] = record.name
 
 fp = open(outfile, 'w')
-dump(d, fp)
+dump(dict(seqs=sys.argv[1],names=d), fp)
 
-fp = open(outfile + '.fullname', 'w')
+fp = open('fullnames.db', 'w')
 dump(e, fp)
